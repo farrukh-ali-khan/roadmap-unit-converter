@@ -8,6 +8,10 @@ A web application to convert between different units of measurement.
 - Convert between weight units (milligram, gram, kilogram, ounce, pound)
 - Convert between temperature units (Celsius, Fahrenheit, Kelvin)
 
+## Project URL
+
+[Project on roadmap.sh](https://roadmap.sh/projects/unit-converter)
+
 ## Installation
 
 1. Ensure Node.js is installed
