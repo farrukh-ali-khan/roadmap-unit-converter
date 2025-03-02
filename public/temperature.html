@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='black'>UC</text></svg>"
+    />
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Unit Converter - Temperature</h1>
+      <nav>
+        <button onclick="window.location.href='/home.html'">
+          Back to Home
+        </button>
+      </nav>
+
+      <h2>Convert Temperature</h2>
+      <form id="temperatureForm">
+        <label for="value">Enter the temperature to convert:</label>
+        <input type="number" step="any" id="value" name="value" required />
+
+        <label for="fromUnit">Unit to Convert from:</label>
+        <select id="fromUnit" name="fromUnit">
+          <option value="Celsius">Celsius (°C)</option>
+          <option value="Fahrenheit">Fahrenheit (°F)</option>
+          <option value="Kelvin">Kelvin (K)</option>
+        </select>
+
+        <label for="toUnit">Unit to Convert to:</label>
+        <select id="toUnit" name="toUnit">
+          <option value="Celsius">Celsius (°C)</option>
+          <option value="Fahrenheit">Fahrenheit (°F)</option>
+          <option value="Kelvin">Kelvin (K)</option>
+        </select>
+
+        <button type="submit">Convert</button>
+      </form>
+
+      <!-- The conversion result will be displayed here -->
+      <div id="result"></div>
+    </div>
+
+    <script>
+      // Intercept the form submission for temperature conversion
+      document
+        .getElementById("temperatureForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+
+          const formData = new FormData(this);
+          const data = new URLSearchParams(formData);
+
+          fetch("/temperature", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+            },
+            body: data,
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              if (json.error) {
+                document.getElementById(
+                  "result"
+                ).innerHTML = `<p style="color:red;">${json.error}</p>`;
+              } else {
+                document.getElementById(
+                  "result"
+                ).innerHTML = `<h3>${json.result}</h3>`;
+              }
+            })
+            .catch((err) => {
+              document.getElementById(
+                "result"
+              ).innerHTML = `<p style="color:red;">An error occurred: ${err}</p>`;
+            });
+        });
+    </script>
+  </body>
+</html>

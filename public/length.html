@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='60' fill='black'>UC</text></svg>"
+    />
+    <title>Length Converter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Unit Converter - Length</h1>
+      <nav>
+        <button onclick="window.location.href='/home.html'">
+          Back to Home
+        </button>
+      </nav>
+
+      <h2>Convert Length</h2>
+      <form id="lengthForm">
+        <label for="value">Enter the length to convert:</label>
+        <input type="number" step="any" id="value" name="value" required />
+
+        <label for="fromUnit">Unit to Convert from:</label>
+        <select id="fromUnit" name="fromUnit">
+          <option value="millimeter">millimeter (mm)</option>
+          <option value="centimeter">centimeter (cm)</option>
+          <option value="meter">meter (m)</option>
+          <option value="kilometer">kilometer (km)</option>
+          <option value="inch">inch (in)</option>
+          <option value="foot">foot (ft)</option>
+          <option value="yard">yard (yd)</option>
+          <option value="mile">mile (mi)</option>
+        </select>
+
+        <label for="toUnit">Unit to Convert to:</label>
+        <select id="toUnit" name="toUnit">
+          <option value="millimeter">millimeter (mm)</option>
+          <option value="centimeter">centimeter (cm)</option>
+          <option value="meter">meter (m)</option>
+          <option value="kilometer">kilometer (km)</option>
+          <option value="inch">inch (in)</option>
+          <option value="foot">foot (ft)</option>
+          <option value="yard">yard (yd)</option>
+          <option value="mile">mile (mi)</option>
+        </select>
+
+        <button type="submit">Convert</button>
+      </form>
+
+      <!-- The conversion result will be displayed here -->
+      <div id="result"></div>
+    </div>
+
+    <script>
+      // Attach event listener to the form to handle conversion via AJAX
+      document
+        .getElementById("lengthForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent normal form submission
+
+          // Collect form data
+          const formData = new FormData(this);
+          const data = new URLSearchParams(formData);
+
+          // Make an AJAX POST request
+          fetch("/length", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+            },
+            body: data,
+          })
+            .then((response) => response.json())
+            .then((json) => {
+              if (json.error) {
+                document.getElementById(
+                  "result"
+                ).innerHTML = `<p style="color:red;">${json.error}</p>`;
+              } else {
+                document.getElementById(
+                  "result"
+                ).innerHTML = `<h3>${json.result}</h3>`;
+              }
+            })
+            .catch((err) => {
+              document.getElementById(
+                "result"
+              ).innerHTML = `<p style="color:red;">An error occurred: ${err}</p>`;
+            });
+        });
+    </script>
+  </body>
+</html>

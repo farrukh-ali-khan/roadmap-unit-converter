@@ -1,0 +1,15 @@
+{
+  "name": "unit-converter",
+  "version": "1.0.0",
+  "description": "A simple unit converter with separate pages for length, weight, and temperature.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "YourName",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

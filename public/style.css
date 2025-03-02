@@ -1,0 +1,123 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Container for all pages */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* Home container */
+.home-container {
+  text-align: center;
+}
+
+/* Heading styles */
+h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  text-align: center;
+  color: #444;
+}
+
+h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+/* Paragraph, labels, etc. */
+p {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* Form elements */
+form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="number"],
+select {
+  margin-top: 0.5rem;
+  padding: 8px;
+  font-size: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 1.5rem;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+/* Buttons container for results pages */
+.buttons {
+  margin-top: 2rem;
+}
+
+.buttons button {
+  margin-right: 10px;
+  margin-top: 0;
+}
+
+/* Home buttons layout */
+.home-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.home-buttons button {
+  width: 200px;
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+/* Responsive design: stack elements on smaller screens */
+@media (max-width: 600px) {
+  .container {
+    margin: 20px;
+    width: auto;
+  }
+  .home-buttons {
+    width: 100%;
+  }
+  .home-buttons button {
+    width: 100%;
+  }
+}
